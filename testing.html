@@ -1,0 +1,17 @@
+<!-- Your logo image with a usemap attribute -->
+<img src="logoremove.png" alt="Logo" usemap="#logoMap" class="logo" />
+
+<!-- Define the clickable regions -->
+<map name="logoMap">
+  <!-- Left half of the image goes to index.html -->
+  <area shape="rect" coords="0,0,100,100" href="index.html" alt="Home" />
+  
+  <!-- Right half of the image goes to Instagram -->
+  <area shape="rect" coords="100,0,200,100" href="https://www.instagram.com/twentyhundred_space" target="_blank" alt="Instagram" />
+</map>
+
+<style>
+  .logo {
+    width: 200px; /* Ensure this matches your image map coords */
+  }
+</style>

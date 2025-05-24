@@ -1,0 +1,363 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .catalog-container {
+    display: flex;
+    padding: 20px;
+    margin-top: 60px; /* Adjust for top navbar */
+  }
+  
+  /* Sidebar Navigation Styles */
+  .sidebar {
+    width: 250px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 15px;
+  }
+  
+  .sidebar ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: block;
+  }
+  
+  .sidebar ul li a:hover {
+    color: #007BFF;
+    text-decoration: underline;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex-grow: 1;
+    margin-left: 30px;
+  }
+  
+  .catalog-title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  /* Product Grid Styles */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .product {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .product img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .product h4 {
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
+  
+  .product p {
+    color: #555;
+    font-size: 1.1em;
+    margin: 10px 0;
+  }
+  
+  .product .add-to-cart {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .product .add-to-cart:hover {
+    background-color: #555;
+  }
+  
+  /* Bottom Navigation Bar Styles */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border-top: 1px solid #444;
+  }
+  
+  .bottom-nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .bottom-nav ul li {
+    margin: 0 15px;
+  }
+  
+  .bottom-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .bottom-nav ul li a:hover {
+    border-bottom: 2px solid white;
+  }
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #111;
+    color: #fff;
+    padding: 1em;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    text-align: center;
+  }
+  
+  .navbar .logo img {
+   height: 100%;
+   max-height: 40px;
+   width: auto;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5em;
+  }
+  
+  .nav-links a {
+    color: #fff;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #aaa;
+  }
+  
+  .menu-toggle {
+    display: none;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  
+  /* Search container */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: transparent;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  padding: 5px;
+  background-color: transparent;
+  color: white;
+  font-size: 14px;
+}
+
+.search-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 16px;
+}
+  
+/* Mobile menu toggle */
+.navbar .menu-toggle {
+  display: none; /* Hide menu toggle by default */
+}
+
+/* For smaller screens (mobile) */
+@media screen and (max-width: 768px) {
+  .navbar .nav-links {
+    display: none; /* Hide links by default */
+    flex-direction: column; /* Stack the links vertically */
+  }
+
+  .navbar .menu-toggle {
+    display: block; /* Show the hamburger icon */
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .navbar .nav-links.active {
+    display: flex; /* Show links when toggled */
+  }
+
+  /* Adjust search bar for mobile */
+  /* Search container */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: transparent;
+  flex-shrink: 0; /* Ensure the search bar doesn't shrink */
+}
+
+  .search-container.active {
+    display: flex; /* Show search when toggled */
+  }
+}
+
+  /* Hero Section -- background: url('1.jpg') no-repeat center center/cover; */
+  .hero {
+    
+    height: 60vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Slideshow Background */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  animation: slideShow 30s infinite;
+  z-index: 1;
+  filter: brightness(0.6);
+}
+  
+  .hero-text {
+  position: relative;
+  color: #fff;
+  text-align: center;
+  z-index: 2;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Keyframes for the slideshow */
+@keyframes slideShow {
+  0% {
+    background-image: url('1.jpg');
+  }
+  33% {
+    background-image: url('2.jpg');
+  }
+  66% {
+    background-image: url('3.jpg');
+  }
+  100% {
+    background-image: url('4.jpg');
+  }
+}
+  /* Sections */
+  section {
+    padding: 3em 2em;
+  }
+  
+  h2 {
+    margin-bottom: 1em;
+    font-size: 2em;
+  }
+  
+  .event-list li {
+    margin-bottom: 1.5em;
+  }
+  
+  .gallery {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
+  
+  .gallery img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 2em;
+    background: #111;
+    color: #fff;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      background: #111;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 200px;
+    }
+  
+    .nav-links.active {
+      display: flex;
+    }
+
+    .nav-links i  {
+    font-size: 1.2em;
+    transition: color 0.3s;
+    }
+
+    .nav-links i:hover {
+      color: #aaa;
+    }
+  
+    .menu-toggle {
+      display: block;
+    }
+}

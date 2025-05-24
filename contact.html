@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catalog - TwentyHundredSpace</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <div id="navbar-placeholder"></div>
+  <!-- Hero Section -->
+
+  <!-- Contact Content -->
+  <section id="contact">
+    <h2>Latest Updates</h2>
+    <ul class="event-list">
+      <li>
+        <h3>Work in Progress – May 20, 2025</h3>
+        <p>Description in progress.</p>
+      </li>
+      <li>
+        <h3>Work in Progress – June 14, 2025</h3>
+        <p>Description in progress.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Optional: Contact Form -->
+  <section id="form" style="padding: 2em;">
+    <h2>Say Hello</h2>
+    <form action="mailto:hello@twentyhundredspace.com" method="POST" enctype="text/plain" style="max-width: 600px; margin: auto;">
+      <div style="margin-bottom: 1em;">
+        <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 0.75em; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+      <div style="margin-bottom: 1em;">
+        <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 0.75em; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+      <div style="margin-bottom: 1em;">
+        <textarea name="message" placeholder="Your Message" rows="5" required style="width: 100%; padding: 0.75em; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+      </div>
+      <button type="submit" style="background: #111; color: #fff; padding: 0.75em 2em; border: none; border-radius: 5px; cursor: pointer;">Send</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 TwentyHundredSpace. All rights reserved.
+  </footer>
+
+  <!-- Mobile menu script -->
+  <script>
+
+     // Load navbar
+    fetch('navigationbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+      });
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>

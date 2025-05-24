@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events - TwentyHundredSpace</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="script.js" defer></script>
+  <style>
+    .video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  padding-top: 25px;
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Load navbar -->
+  <div id="navbar-placeholder"></div>
+
+  <section class="event-gallery" id="picture">
+    <h2>THMG</h2>
+    <div class="event-grid">
+      <a href="event1.html" class="event-card">
+        <img src="damcamp.jpg" alt="Event 1">
+        <div class="event-label">Dam Camp 2024</div>
+      </a>
+      <a href="event2.html" class="event-card">
+        <img src="https://source.unsplash.com/random/400x300?event,2" alt="Event 2">
+        <div class="event-label">2nd Event</div>
+      </a>
+      <a href="event3.html" class="event-card">
+        <img src="https://source.unsplash.com/random/400x300?event,3" alt="Event 3">
+        <div class="event-label">3rd Event</div>
+      </a>
+      <!-- Add more as needed -->
+    </div>
+  </section>
+
+  <section id="video">
+  <h2>Video</h2>
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/jrEMwZ-wqow" 
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+
+
+
+  <script>
+    fetch('navigationbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+      });
+  </script>
+
+</body>
+</html>

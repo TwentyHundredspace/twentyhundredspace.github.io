@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Upload Product</title>
+</head>
+<body>
+  <h2>Upload Product</h2>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" name="image" required /><br><br>
+    <input type="text" name="title" placeholder="Product Title" required /><br><br>
+    <input type="text" name="price" placeholder="Price" /><br><br>
+    <input type="text" name="category" placeholder="Category" /><br><br>
+    <button type="submit">Upload</button>
+  </form>
+  <p id="status"></p>
+
+  <script>
+    document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+
+      const res = await fetch("/upload", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await res.json();
+      document.getElementById("status").innerText = data.message;
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

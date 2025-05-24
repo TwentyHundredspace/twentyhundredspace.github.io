@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dam camp 2024</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="script.js" defer></script>
+  <style>
+    /* Lightbox Styles */
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-direction: column;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 12px;
+    }
+
+    .lightbox-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 2rem;
+    }
+
+    .lightbox-controls i {
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .lightbox-controls i:hover {
+      color: #aaa;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="navbar-placeholder"></div>
+
+  <section class="gallery">
+    <h2>Dam Camp 2024</h2>
+    <div class="gallery-grid" id="gallery">
+      <img src="11.jpg" alt="">
+      <img src="22.jpg" alt="">
+      <img src="33.jpg" alt="">
+      <img src="44.jpg" alt="">
+      <img src="55.jpg" alt="">
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox-controls">
+      <i class="fas fa-chevron-left" onclick="prevImage()"></i>
+      <i class="fas fa-chevron-right" onclick="nextImage()"></i>
+    </div>
+    <img src="" alt="Preview" id="lightbox-img" />
+  </div>
+
+  <script>
+    // Load navbar
+    fetch('navigationbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+      });
+
+    // Lightbox Logic
+    const galleryImages = document.querySelectorAll('#gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    let currentIndex = 0;
+
+    galleryImages.forEach((img, index) => {
+      img.addEventListener('click', () => {
+        currentIndex = index;
+        showImage();
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    function showImage() {
+      lightboxImg.src = galleryImages[currentIndex].src;
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      showImage();
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      showImage();
+    }
+
+    // Close on outside click or ESC
+    window.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    });
+  </script>
+
+</body>
+</html>

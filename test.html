@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catalog - TwentyHundredSpace</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- Catalog Layout -->
+  <div class="catalog-container">
+    <aside class="sidebar">
+      <h3>Categories</h3>
+      <ul>
+        <li><a href="#clothing">Clothing</a></li>
+        <li><a href="#accessories">Accessories</a></li>
+        <li><a href="#art">Art</a></li>
+        <li><a href="#shoes">Shoes</a></li>
+        <li><a href="#sale">Sale</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <h1 class="catalog-title">Shop Our Products</h1>
+      <div class="product-grid">
+        <!-- Example Product -->
+        <div class="product">
+          <div class="product-preview" onclick="openProductGallery('jentayu')">
+            <img src="jentayu.jpg" alt="Jentayu">
+          </div>
+          <h4>Jentayu</h4>
+          <p>70 MYR</p>
+          <button onclick="orderWhatsApp('Jentayu')">Order via WhatsApp</button>
+        </div>
+        <div class="product" onclick="openProductGallery('product2')">
+            <img src="product2-1.jpg" alt="Another Product">
+            <h4>Another Product</h4>
+            <p>50 MYR</p>
+            <button onclick="orderWhatsApp('Another Product')">Order via WhatsApp</button>
+          </div>
+        <!-- Add more products as needed -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="productLightbox" class="lightbox">
+    <span class="close" onclick="closeProductLightbox()">&times;</span>
+    <img id="productLightboxImg" class="lightbox-img" src="" alt="Product Image" />
+    <div class="lightbox-nav">
+      <span class="prev" onclick="changeProductImage(-1)">&#10094;</span>
+      <span class="next" onclick="changeProductImage(1)">&#10095;</span>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation (Mobile) -->
+  <nav class="catalog-nav">
+    <a href="#clothing"><i class="fas fa-tshirt"></i>Clothing</a>
+    <a href="#accessories"><i class="fas fa-hat-cowboy"></i>Accessories</a>
+    <a href="#art"><i class="fas fa-paint-brush"></i>Art</a>
+    <a href="#shoes"><i class="fas fa-shoe-prints"></i>Shoes</a>
+    <a href="#sale"><i class="fas fa-tag"></i>Sale</a>
+  </nav>
+
+  <script>
+    // Load Top Navbar
+    fetch('navigationbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+      });
+
+    // Image preview logic
+    const productImages = {
+      jentayu: ["jentayu.jpg", "jentayu2.jpg", "jentayu3.jpg"],
+      product2: ["product2-1.jpg", "product2-2.jpg"]
+    };
+
+    let currentProduct = "";
+    let currentImgIndex = 0;
+
+    function openProductGallery(productId) {
+      currentProduct = productId;
+      currentImgIndex = 0;
+      document.getElementById("productLightboxImg").src = productImages[productId][0];
+      document.getElementById("productLightbox").style.display = "flex";
+    }
+
+    function closeProductLightbox() {
+      document.getElementById("productLightbox").style.display = "none";
+    }
+
+    function changeProductImage(direction) {
+      const images = productImages[currentProduct];
+      currentImgIndex = (currentImgIndex + direction + images.length) % images.length;
+      document.getElementById("productLightboxImg").src = images[currentImgIndex];
+    }
+
+    function orderWhatsApp(productName) {
+      const message = `Hello! I'm interested in ordering: ${productName}`;
+      window.open(`https://wa.me/60123456789?text=${encodeURIComponent(message)}`, '_blank');
+    }
+  </script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #f9f9f9;
+    }
+
+    .catalog-container {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 60px;
+    }
+
+    .main-content {
+      padding: 1rem 1.5rem;
+    }
+
+    .catalog-title {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+    .product {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.2s ease;
+    }
+
+    .product img {
+    max-width: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+    }
+
+
+    .add-to-cart, .product button {
+      background: black;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .sidebar {
+      display: none;
+    }
+
+    .catalog-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem 0;
+      z-index: 100;
+    }
+
+    .catalog-nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .catalog-nav i {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 80%;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .lightbox-nav .prev, .lightbox-nav .next {
+      color: white;
+      font-size: 2rem;
+      margin: 20px;
+      cursor: pointer;
+    }
+
+    @media (min-width: 768px) {
+      .catalog-container {
+        flex-direction: row;
+      }
+
+      .sidebar {
+        display: block;
+        width: 220px;
+        padding: 1.5rem 1rem;
+        background: #fff;
+        box-shadow: 2px 0 6px rgba(0,0,0,0.05);
+        height: 100vh;
+        position: sticky;
+        top: 60px;
+      }
+
+      .catalog-nav {
+        display: none;
+      }
+    }
+  </style>
+</body>
+</html>
